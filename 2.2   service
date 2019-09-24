@@ -1,0 +1,11 @@
+package com.offcn.service;
+
+import com.offcn.dao.UserDao;
+import com.offcn.dao.impl.UserDaoImpl;
+import com.offcn.domain.User;
+import com.offcn.service.impl.UserServiceImpl;
+
+public interface UserService  {
+	 boolean chickUser(User user) throws Exception;
+	
+}
