@@ -1,0 +1,46 @@
+package com.offcn.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.offcn.domain.User;
+import com.offcn.service.UserService;
+import com.offcn.service.impl.UserServiceImpl;
+
+public class UserServlet extends HttpServlet {
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		//获取请求参数
+		String uname = request.getParameter("uname");
+		String upwd = request.getParameter("upwd");
+		//封装user对象
+		User user = new User();
+		user.setUname(uname);
+		user.setUpwd(upwd);
+		
+		//依赖service层
+		UserService us = new UserServiceImpl(); 
+		boolean flag = false;
+		try {
+			flag = us.chickUser(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(flag) {
+			response.getWriter().print("success");
+		}else {
+			response.getWriter().print("unsuccess!!!");
+		}
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
