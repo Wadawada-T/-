@@ -1,0 +1,18 @@
+package com.offcn.service.impl;
+
+import com.offcn.dao.UserDao;
+import com.offcn.dao.impl.UserDaoImpl;
+import com.offcn.domain.User;
+import com.offcn.service.UserService;
+
+public class UserServiceImpl implements UserService{
+
+	public boolean chickUser(User user) throws Exception {
+		UserDao us = new UserDaoImpl();
+		User u = us.chickUser(user);
+		
+		return u==null?false:true;
+	}
+	
+
+}
